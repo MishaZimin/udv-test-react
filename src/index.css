@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+@theme {
+  --color-mint: #00c08b;
+  --color-minthover: #00ab7c;
+  --color-mintactive: #00966d;
+
+  --color-rose: #f14f4f;
+  --color-rosehover: #de4949;
+  --color-roseactive: #c94242;
+
+  --color-base: #f8f9fa;
+  --color-graphite: #0b2027;
+}
