@@ -1,4 +1,5 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap');
+@import 'tailwindcss';
 
 @theme {
   --color-mint: #00c08b;
@@ -11,4 +12,12 @@
 
   --color-base: #f8f9fa;
   --color-graphite: #0b2027;
+
+  --font-base: 'Golos Text', sans-serif;
+}
+
+@layer base {
+  p {
+    @apply font-base;
+  }
 }
