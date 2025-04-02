@@ -6,6 +6,8 @@ import { MessageProps } from '../types/Message.types';
 import { MessageActions } from './MessageActions';
 import { useMenu } from '../hooks/useMenu';
 import { MessageSenderName } from './MessageSenderName';
+import { MessageReply } from './MessageReply';
+import { MessageFile } from '@/components/MessageFile/ui/MessageFile';
 
 export const Message = ({
   text,
@@ -28,7 +30,6 @@ export const Message = ({
     handleMouseEnter,
     handleMouseLeave,
   } = useMenu(messageRef);
-
   return (
     <div
       ref={messageRef}
@@ -40,53 +41,30 @@ export const Message = ({
       onMouseLeave={handleMouseLeave}
     >
       <div
-        className={`relative max-w-[400px]  min-h-[42px] rounded-xl p-1 ${
-          isMine ? 'bg-mint text-white' : 'bg-graphite/6 text-graphite'
+        className={`relative max-w-[450px] min-h-[42px] rounded-xl p-1 ${
+          isMine ? 'bg-mint/90 text-white' : 'bg-graphite/6 text-graphite'
         }`}
       >
         {senderName != '' && (
           <MessageSenderName
+            text={''}
             isMine={isMine}
             senderName={senderName}
-            text={''}
           />
         )}
 
         {senderName && replyTo?.text && (
-          <div className="flex gap-2 w-full max-w-full overflow-hidden mb-1 pl-2 pt-1">
-            <div
-              className={`flex-shrink-0 ${isMine ? 'bg-white' : 'bg-mint'} rounded-full w-1 mt-1`}
-            />
-            <div className="flex-1 min-w-0 overflow-hidden">
-              <p
-                className={`${isMine ? 'text-white' : 'text-mint'} truncate text-sm`}
-              >
-                {replyTo?.senderName}
-              </p>
-              <p className="truncate">{replyTo?.text}</p>
-            </div>
+          <MessageReply replyTo={replyTo} isMine={isMine} />
+        )}
+
+        {files !== undefined && files?.length > 0 && (
+          <div className={`${text ? 'mb-0' : 'mb-5'} flex flex-col gap-1`}>
+            {files?.map((file, index) => (
+              <MessageFile key={index} file={file} />
+            ))}
           </div>
         )}
 
-        {files?.map((file, index) =>
-          file.type.startsWith('image/') ? (
-            <img
-              key={index}
-              src={file.url}
-              alt={file.name}
-              className="max-w-[300px] max-h-[300px] rounded-lg"
-            />
-          ) : (
-            <a
-              key={index}
-              href={file.url}
-              download={file.name}
-              className="block p-2 bg-gray-100 rounded-lg mt-2"
-            >
-              📄 {file.name} ({Math.round(file.size / 1024)} KB)
-            </a>
-          ),
-        )}
         {text && (
           <MessageContent text={text} isMine={isMine} senderName={senderName} />
         )}

@@ -17,6 +17,7 @@
     "clsx": "^2.1.1",
     "emoji-picker-react": "^4.12.2",
     "jotai": "^2.12.2",
+    "localforage": "^1.10.0",
     "motion": "^12.6.2",
     "nanoid": "^5.1.5",
     "react": "^19.0.0",
@@ -40,6 +41,7 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
     "prettier": "^3.5.3",
+    "rollup-plugin-visualizer": "^5.14.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"

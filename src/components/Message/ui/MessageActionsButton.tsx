@@ -16,7 +16,7 @@ export const MessageActionsButton = ({
   return (
     <div
       className={`
-      absolute pb-1 -translate-y-1/2 
+      absolute pb-3 -translate-y-1/2 
       transition-opacity duration-200
       ${isMine ? 'left-[-18px]' : 'right-[-18px]'}
       ${isHovered && !isContextActive ? 'opacity-100' : 'opacity-0'}

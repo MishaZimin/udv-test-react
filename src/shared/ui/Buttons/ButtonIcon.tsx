@@ -16,6 +16,7 @@ const reactIcons = {
   Cross: RxCross2,
   Smile: HiOutlineEmojiHappy,
   Back: IoChevronBackOutline,
+  ArrowDown: IoChevronBackOutline,
 };
 
 type IconName = keyof typeof reactIcons;

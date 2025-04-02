@@ -14,8 +14,12 @@ export const useMessageActionHandlers = (
           break;
 
         case 'reply':
-          if (senderName && messageText) {
-            setReplyingMessageInfo(senderName, messageText, '-1');
+          if (senderName) {
+            setReplyingMessageInfo(
+              senderName,
+              messageText == '' ? 'Файл' : messageText,
+              '-1',
+            );
           }
           break;
 
