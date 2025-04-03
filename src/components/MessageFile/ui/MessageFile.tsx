@@ -4,17 +4,7 @@ import { FileLoading } from './FileLoading';
 import { FileError } from './FileError';
 import { ImagePreview } from './ImagePreview';
 import { FileDownload } from './FileDownload';
-
-type FileAttachment = {
-  id: string;
-  name: string;
-  type: string;
-  size: number;
-};
-
-type MessageFileProps = {
-  file: FileAttachment;
-};
+import { MessageFileProps } from '../types/types';
 
 export const MessageFile = memo(({ file }: MessageFileProps) => {
   const { url: fileUrl, loading, error } = useFileAttachment(file.id);

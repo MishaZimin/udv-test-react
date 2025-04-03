@@ -34,6 +34,7 @@ export const useMessageActionHandlers = (
   const defaultActions = [
     { label: 'Копировать текст', value: 'copy' },
     { label: 'Ответить', value: 'reply' },
+    // { label: 'Редактировать', value: 'reply' },
   ];
 
   return { handleAction, defaultActions };

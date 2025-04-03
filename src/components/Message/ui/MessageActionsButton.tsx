@@ -1,11 +1,11 @@
 import { BsThreeDots } from 'react-icons/bs';
 
-interface MessageActionsButtonProps {
+type MessageActionsButtonProps = {
   isMine: boolean;
   isHovered: boolean;
   isContextActive: boolean;
   onClick: (e: React.MouseEvent) => void;
-}
+};
 
 export const MessageActionsButton = ({
   isMine,

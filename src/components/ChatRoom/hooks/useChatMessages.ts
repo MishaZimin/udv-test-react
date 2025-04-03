@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { getFile } from '@/shared/lib/fileStorage';
-import type { ChatMessage } from '@/shared/types/files';
+import type { ChatMessage } from '@/shared/types/types';
 
 export function useChatMessages(messages: ChatMessage[]) {
   const blobUrlsRef = useRef<Map<string, string>>(new Map());

@@ -1,8 +1,8 @@
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { nanoid } from 'nanoid';
-import { saveFile } from '../../../shared/lib/fileStorage';
-import { ChatMessage } from '../../../shared/types/files';
+import { saveFile } from '@/shared/lib/fileStorage';
+import { ChatMessage } from '@/shared/types/types';
 
 type ChatRooms = Record<string, ChatMessage[]>;
 

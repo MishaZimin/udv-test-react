@@ -2,13 +2,7 @@ import { memo } from 'react';
 import { FaRegFile } from 'react-icons/fa';
 import { FileSize } from './FileSize';
 import { FiDownload } from 'react-icons/fi';
-
-type FileAttachment = {
-  id: string;
-  name: string;
-  type: string;
-  size: number;
-};
+import { FileAttachment } from '../types/types';
 
 export const FileDownload = memo(
   ({ url, file }: { url: string; file: FileAttachment }) => (

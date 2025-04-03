@@ -1,7 +1,7 @@
+import EmojiPicker from 'emoji-picker-react';
 import { ButtonIcon } from '@/shared/ui/Buttons/ButtonIcon';
 import { FilePreview } from './FilePreview';
 import { MessageTextarea } from './MessageTextarea';
-import EmojiPicker from 'emoji-picker-react';
 import { useMessageInput } from '../hooks/useMessageInput';
 
 export type MessageInputProps = {
@@ -56,8 +56,8 @@ export const MessageInput = ({ onSend }: MessageInputProps) => {
           >
             <EmojiPicker
               onEmojiClick={emojiPicker.onEmojiSelect}
-              width={400}
-              height={500}
+              width={300}
+              height={400}
               previewConfig={{ showPreview: false }}
             />
           </div>

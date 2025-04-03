@@ -1,12 +1,6 @@
 import { forwardRef } from 'react';
 import { useMessageActionHandlers } from '../hooks/useMessageActionHandlers';
-
-export type ActionItem = {
-  label: string;
-  value: string;
-  icon?: React.ReactNode;
-  danger?: boolean;
-};
+import { ActionItem } from '../types/types';
 
 type MessageActionsProps = {
   isOpen: boolean;

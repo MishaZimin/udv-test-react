@@ -13,9 +13,11 @@ export const getBlobUrl = async (fileId: string): Promise<string | null> => {
 
     const blobUrl = URL.createObjectURL(storedFile.file);
     blobCache.set(fileId, blobUrl);
+
     return blobUrl;
   } catch (error) {
     console.error('Error loading file:', error);
+
     return null;
   }
 };

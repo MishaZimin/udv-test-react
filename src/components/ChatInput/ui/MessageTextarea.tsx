@@ -1,6 +1,6 @@
 import { useRef, useEffect, KeyboardEvent } from 'react';
 
-type MessageTextareaProps = {
+export type MessageTextareaProps = {
   value: string;
   onChange: (value: string) => void;
   onSend: () => void;

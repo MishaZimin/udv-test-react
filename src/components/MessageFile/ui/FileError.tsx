@@ -1,13 +1,7 @@
 import { memo } from 'react';
 import { FaRegFile } from 'react-icons/fa';
 import { FileSize } from './FileSize';
-
-type FileAttachment = {
-  id: string;
-  name: string;
-  type: string;
-  size: number;
-};
+import { FileAttachment } from '../types/types';
 
 export const FileError = memo(({ file }: { file: FileAttachment }) => (
   <div className="flex items-center gap-2 p-3 bg-gray-100 rounded-lg text-gray-700">

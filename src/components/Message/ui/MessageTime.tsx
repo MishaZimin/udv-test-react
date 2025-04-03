@@ -1,4 +1,4 @@
-import { MessageProps } from '../types/Message.types';
+import { MessageProps } from '../types/types';
 
 export const MessageTime = ({
   time,

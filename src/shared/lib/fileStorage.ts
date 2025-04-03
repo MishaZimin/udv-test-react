@@ -1,12 +1,12 @@
 import localforage from 'localforage';
 
-export interface StoredFile {
+export type StoredFile = {
   id: string;
   file: Blob;
   name: string;
   type: string;
   size: number;
-}
+};
 
 export const fileStorage = localforage.createInstance({
   name: 'chat-files',
@@ -24,6 +24,7 @@ export async function saveFile(file: File): Promise<string> {
     size: file.size,
   };
   await fileStorage.setItem(fileId, storedFile);
+
   return fileId;
 }
 

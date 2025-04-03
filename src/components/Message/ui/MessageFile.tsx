@@ -2,17 +2,10 @@ import { memo, useMemo } from 'react';
 import { useFileAttachment } from '@/components/ChatRoom/hooks/useFileStorage';
 import { FaRegFile, FaSpinner } from 'react-icons/fa';
 import { FiDownload } from 'react-icons/fi';
-
-type FileAttachment = {
-  id: string;
-  name: string;
-  type: string;
-  size: number;
-};
-
-type MessageFileProps = {
-  file: FileAttachment;
-};
+import {
+  FileAttachment,
+  MessageFileProps,
+} from '@/components/MessageFile/types/types';
 
 const FileSize = memo(({ bytes }: { bytes: number }) => {
   const sizeText = useMemo(() => {

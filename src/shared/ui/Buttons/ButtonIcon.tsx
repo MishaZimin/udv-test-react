@@ -21,12 +21,12 @@ const reactIcons = {
 
 type IconName = keyof typeof reactIcons;
 
-interface IconButtonProps {
+type IconButtonProps = {
   iconName: IconName;
   onClick: () => void;
   className?: string;
   iconClassName?: string;
-}
+};
 
 export const ButtonIcon = ({
   iconName,

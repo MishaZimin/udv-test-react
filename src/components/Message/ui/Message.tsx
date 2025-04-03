@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { MessageContent } from './MessageContent';
 import { MessageTime } from './MessageTime';
 import { MessageActionsButton } from './MessageActionsButton';
-import { MessageProps } from '../types/Message.types';
+import { MessageProps } from '../types/types';
 import { MessageActions } from './MessageActions';
 import { useMenu } from '../hooks/useMenu';
 import { MessageSenderName } from './MessageSenderName';

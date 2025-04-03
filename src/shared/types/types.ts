@@ -1,12 +1,12 @@
-export interface ChatFile {
+export type ChatFile = {
   id: string;
   name: string;
   type: string;
   size: number;
   url: string;
-}
+};
 
-export interface ChatMessage {
+export type ChatMessage = {
   id: string;
   text: string;
   time: string;
@@ -15,4 +15,4 @@ export interface ChatMessage {
   roomId: string;
   replyTo: null | { senderName: string; text: string | null };
   files?: ChatFile[];
-}
+};
