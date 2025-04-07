@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { Spiner } from '@/shared/ui/Spiner/Spiner';
+import { ProtectedRoute } from './ProtectedRoute';
 
 const JoinChatPage = lazy(
   () => import('../pages/JoinChatPage/ui/JoinChatPage'),
@@ -18,7 +19,9 @@ export const router = createBrowserRouter([
     path: '/chat/:roomId',
     element: (
       <Suspense fallback={<Spiner />}>
-        <ChatRoomPage />
+        <ProtectedRoute>
+          <ChatRoomPage />
+        </ProtectedRoute>
       </Suspense>
     ),
   },
