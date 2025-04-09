@@ -23,9 +23,10 @@ type IconName = keyof typeof reactIcons;
 
 type IconButtonProps = {
   iconName: IconName;
-  onClick: () => void;
+  onClick: (e?: React.MouseEvent) => void;
   className?: string;
   iconClassName?: string;
+  ref?: React.RefObject<HTMLButtonElement | null>;
 };
 
 export const ButtonIcon = ({
@@ -33,6 +34,7 @@ export const ButtonIcon = ({
   onClick,
   className = '',
   iconClassName = 'opacity-60',
+  ref,
 }: IconButtonProps) => {
   const isReactIcon = iconName in reactIcons;
   const ReactIconComponent = reactIcons[
@@ -42,6 +44,7 @@ export const ButtonIcon = ({
   return (
     <div>
       <button
+        ref={ref}
         onClick={onClick}
         className={`transition-all duration-200 min-w-[36px] min-h-[36px] cursor-pointer rounded-[8px] p-[4px] hover:bg-graphite/8 ${className}`}
       >

@@ -3,7 +3,9 @@ import { FaRegFile } from 'react-icons/fa';
 import { FileSize } from './FileSize';
 import { FileAttachment } from '../types/types';
 
-export const FileError = memo(({ file }: { file: FileAttachment }) => (
+type FileError = { file: FileAttachment };
+
+export const FileError = memo(({ file }: FileError) => (
   <div className="flex items-center gap-2 p-3 bg-gray-100 rounded-lg text-gray-700">
     <FaRegFile className="w-5 h-5" />
     <div>

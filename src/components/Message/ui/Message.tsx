@@ -46,11 +46,7 @@ export const Message = ({
         }`}
       >
         {senderName != '' && (
-          <MessageSenderName
-            text={''}
-            isMine={isMine}
-            senderName={senderName}
-          />
+          <MessageSenderName isMine={isMine} senderName={senderName} />
         )}
 
         {senderName && replyTo?.text && (
@@ -65,11 +61,10 @@ export const Message = ({
           </div>
         )}
 
-        {text && (
-          <MessageContent text={text} isMine={isMine} senderName={senderName} />
-        )}
+        {text && <MessageContent text={text} />}
 
         <MessageTime time={time} isMine={isMine} />
+
         <MessageActionsButton
           isMine={isMine}
           isHovered={isHovered}

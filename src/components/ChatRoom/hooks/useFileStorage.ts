@@ -1,45 +1,50 @@
 import { useState, useEffect } from 'react';
 import { getBlobUrl } from '@/shared/lib/blobCache';
 
-export function useFileAttachment(fileId: string) {
-  const [state, setState] = useState<{
-    url: string | null;
-    loading: boolean;
-    error: boolean;
-  }>({
-    url: null,
-    loading: true,
-    error: false,
-  });
+type FileAttachmentState = {
+  url: string | null;
+  loading: boolean;
+  error: boolean;
+};
+
+const initialState: FileAttachmentState = {
+  url: null,
+  loading: true,
+  error: false,
+};
+
+export function useFileAttachment(fileId: string): FileAttachmentState {
+  const [state, setState] = useState<FileAttachmentState>(initialState);
 
   useEffect(() => {
-    let isMounted = true;
+    let isActive = true;
 
-    const loadFile = async () => {
+    const fetchFileUrl = async () => {
       try {
         const url = await getBlobUrl(fileId);
-        if (isMounted) {
-          setState({
-            url,
-            loading: false,
-            error: !url,
-          });
-        }
+
+        if (!isActive) return;
+
+        setState({
+          url,
+          loading: false,
+          error: !url,
+        });
       } catch {
-        if (isMounted) {
-          setState({
-            url: null,
-            loading: false,
-            error: true,
-          });
-        }
+        if (!isActive) return;
+
+        setState({
+          url: null,
+          loading: false,
+          error: true,
+        });
       }
     };
 
-    loadFile();
+    fetchFileUrl();
 
     return () => {
-      isMounted = false;
+      isActive = false;
     };
   }, [fileId]);
 

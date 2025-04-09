@@ -18,10 +18,10 @@ export async function saveFile(file: File): Promise<string> {
   const fileId = crypto.randomUUID();
   const storedFile: StoredFile = {
     id: fileId,
-    file: new Blob([file], { type: file.type }),
     name: file.name,
     type: file.type,
     size: file.size,
+    file: new Blob([file], { type: file.type }),
   };
   await fileStorage.setItem(fileId, storedFile);
 

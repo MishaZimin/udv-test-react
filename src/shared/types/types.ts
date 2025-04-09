@@ -3,7 +3,7 @@ export type ChatFile = {
   name: string;
   type: string;
   size: number;
-  url: string;
+  url?: string;
 };
 
 export type ChatMessage = {
@@ -13,6 +13,6 @@ export type ChatMessage = {
   senderId: string;
   senderName: string;
   roomId: string;
-  replyTo: null | { senderName: string; text: string | null };
+  replyTo?: null | { senderName: string; text: string | null };
   files?: ChatFile[];
 };

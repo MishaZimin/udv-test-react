@@ -2,15 +2,34 @@ import EmojiPicker from 'emoji-picker-react';
 import { ButtonIcon } from '@/shared/ui/Buttons/ButtonIcon';
 import { FilePreview } from './FilePreview';
 import { MessageTextarea } from './MessageTextarea';
-import { useMessageInput } from '../hooks/useMessageInput';
+import { useTextInput } from '../hooks/useTextInput';
+import { useFileUpload } from '../hooks/useFileUpload';
+import { useEmojiPicker } from '../hooks/useEmojiPicker';
+import { useReply } from '../hooks/useReply';
 
 export type MessageInputProps = {
   onSend: (text: string, files?: File[]) => void;
 };
 
 export const MessageInput = ({ onSend }: MessageInputProps) => {
-  const { textState, emojiPicker, fileInput, files, reply, send } =
-    useMessageInput(onSend);
+  const textInput = useTextInput();
+  const fileUpload = useFileUpload();
+  const emojiPicker = useEmojiPicker();
+  const reply = useReply();
+
+  const handleSend = () => {
+    if (textInput.value.trim() || fileUpload.files.length > 0) {
+      onSend(textInput.value, fileUpload.files);
+      textInput.clear();
+      fileUpload.clearFiles();
+      reply.cancel();
+      emojiPicker.close();
+    }
+  };
+
+  const handleEmojiSelect = (emoji: { emoji: string }) => {
+    textInput.append(emoji.emoji);
+  };
 
   return (
     <div className="flex flex-col border border-graphite/8 rounded-xl p-2 relative">
@@ -27,35 +46,39 @@ export const MessageInput = ({ onSend }: MessageInputProps) => {
         </div>
       )}
 
-      <FilePreview files={files.list} onRemove={files.remove} />
+      <FilePreview files={fileUpload.files} onRemove={fileUpload.removeFile} />
 
       <div className="flex items-end relative">
-        <ButtonIcon iconName="Plus" onClick={fileInput.open} />
+        <ButtonIcon iconName="Plus" onClick={fileUpload.openFileDialog} />
         <input
           type="file"
-          ref={fileInput.ref}
-          onChange={fileInput.onChange}
+          ref={fileUpload.inputRef}
+          onChange={fileUpload.handleFileChange}
           className="hidden"
           multiple
         />
 
         <MessageTextarea
-          value={textState.value}
-          onChange={textState.onChange}
-          onSend={send.handle}
+          value={textInput.value}
+          onChange={textInput.onChange}
+          onSend={handleSend}
           placeholder="Напишите сообщение..."
         />
 
-        <ButtonIcon iconName="Smile" onClick={emojiPicker.toggle} />
-        <ButtonIcon iconName="Send" onClick={send.handle} />
+        <ButtonIcon
+          iconName="Smile"
+          onClick={emojiPicker.toggle}
+          ref={emojiPicker.triggerRef}
+        />
+        <ButtonIcon iconName="Send" onClick={handleSend} />
 
         {emojiPicker.isOpen && (
           <div
-            ref={emojiPicker.ref}
+            ref={emojiPicker.pickerRef}
             className="absolute bottom-full mb-3 right-[-5px] bg-white rounded-xl z-50 shadow-lg"
           >
             <EmojiPicker
-              onEmojiClick={emojiPicker.onEmojiSelect}
+              onEmojiClick={handleEmojiSelect}
               width={300}
               height={400}
               previewConfig={{ showPreview: false }}

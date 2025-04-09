@@ -14,16 +14,11 @@ type ChatRoomProps = {
 export const ChatRoom = ({ roomId, currentUser, onBack }: ChatRoomProps) => {
   const { messages, handleSendMessage, messagesEndRef, scrollToBottom } =
     useChatRoom(roomId, currentUser);
-
-  const messagesWithFiles = useChatMessages(messages);
+  const ChatMessages = useChatMessages(messages);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      scrollToBottom();
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, [messagesWithFiles, scrollToBottom]);
+    scrollToBottom();
+  }, [ChatMessages, scrollToBottom]);
 
   return (
     <div className="w-full max-w-[724px] flex flex-col h-full border border-graphite/8 rounded-2xl my-8 overflow-hidden scrollbar-thin">
@@ -34,7 +29,7 @@ export const ChatRoom = ({ roomId, currentUser, onBack }: ChatRoomProps) => {
       </div>
 
       <div className="relative flex-1 overflow-y-auto px-6 pt-4 pb-12">
-        {messagesWithFiles.map((msg) => (
+        {ChatMessages.map((msg) => (
           <Message
             key={msg.id}
             text={msg.text}

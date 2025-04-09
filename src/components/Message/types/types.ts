@@ -1,16 +1,10 @@
+import { ChatFile } from '@/shared/types/types';
+
 export type ActionItem = {
   label: string;
   value: string;
   icon?: React.ReactNode;
   danger?: boolean;
-};
-
-export type ChatFile = {
-  id: string;
-  name: string;
-  type: string;
-  size: number;
-  url: string;
 };
 
 export type MessageProps = {

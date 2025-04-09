@@ -1,8 +1,8 @@
-import { MessageProps } from '../types/types';
+type MessageContentProps = {
+  text: string;
+};
 
-export const MessageContent = ({
-  text,
-}: Pick<MessageProps, 'text' | 'isMine' | 'senderName'>) => (
+export const MessageContent = ({ text }: MessageContentProps) => (
   <div className="pr-[50px] py-1 pl-2">
     <p className="font-base">{text}</p>
   </div>

@@ -7,34 +7,33 @@ export const useMessageActionHandlers = (
   const { setReplyingMessageInfo } = useMessageState();
 
   const handleAction = async (action: string) => {
-    try {
-      switch (action) {
-        case 'copy':
+    switch (action) {
+      case 'copy':
+        try {
           await navigator.clipboard.writeText(messageText);
-          break;
+        } catch (error) {
+          console.error('copy error: ', error);
+        }
+        break;
 
-        case 'reply':
-          if (senderName) {
-            setReplyingMessageInfo(
-              senderName,
-              messageText == '' ? 'Файл' : messageText,
-              '-1',
-            );
-          }
-          break;
+      case 'reply':
+        if (senderName) {
+          setReplyingMessageInfo(
+            senderName,
+            messageText.trim() === '' ? 'Файл' : messageText,
+            '-1',
+          );
+        }
+        break;
 
-        default:
-          break;
-      }
-    } catch (error) {
-      console.error('error: ', error);
+      default:
+        break;
     }
   };
 
   const defaultActions = [
     { label: 'Копировать текст', value: 'copy' },
     { label: 'Ответить', value: 'reply' },
-    // { label: 'Редактировать', value: 'reply' },
   ];
 
   return { handleAction, defaultActions };

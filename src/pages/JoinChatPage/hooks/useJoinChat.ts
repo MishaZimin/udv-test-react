@@ -5,6 +5,7 @@ export function useJoinChat() {
 
   const handleJoin = (name: string, room: string) => {
     const roomId = room.toLowerCase().replace(/\s+/g, '-');
+
     sessionStorage.setItem('currentUser', name);
     navigate(`/chat/${roomId}`);
   };

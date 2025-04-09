@@ -1,22 +1,29 @@
-import { useState, useCallback, ChangeEvent } from 'react';
+import { useRef, useState } from 'react';
 
 export const useFileUpload = () => {
   const [files, setFiles] = useState<File[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const fileList: FileList | null = e.target.files;
-    if (!fileList) return;
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFiles([...files, ...Array.from(e.target.files)]);
+    }
+  };
 
-    setFiles((prev: File[]) => [...prev, ...Array.from(fileList as FileList)]);
-  }, []);
+  const removeFile = (index: number) => {
+    setFiles(files.filter((_, i) => i !== index));
+  };
 
-  const removeFile = useCallback((index: number) => {
-    setFiles((prev) => prev.filter((_, i) => i !== index));
-  }, []);
+  const clearFiles = () => setFiles([]);
 
-  const clearFiles = useCallback(() => {
-    setFiles([]);
-  }, []);
+  const openFileDialog = () => inputRef.current?.click();
 
-  return { files, handleFileChange, removeFile, clearFiles };
+  return {
+    files,
+    inputRef,
+    handleFileChange,
+    removeFile,
+    clearFiles,
+    openFileDialog,
+  };
 };
